@@ -70,7 +70,7 @@ Once the build is complete, run the `run` command to start the package server.
 
 ## Adding react-native-agora to your project
   1. `cd into_your_project_path`
-  2. `npm install react-native-agora --save'
+  2. `npm install react-native-agora --save`
   3. `react-native link react-native-agora`
   4. build and run it.
     you can run `react-native run-android` directly to build android platform.  
