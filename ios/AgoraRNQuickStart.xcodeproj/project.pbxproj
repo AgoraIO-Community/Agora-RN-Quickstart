@@ -79,13 +79,6 @@
 			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
 			remoteInfo = RCTVibration;
 		};
-		0861DF2F221D41DF00A72F8C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B6DDA4D52B3240A18E43BB26 /* RCTAgora.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 23AF281C1EEFECD800D771AB;
-			remoteInfo = RCTAgora;
-		};
 		08AA409C221C324C00064B87 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -113,6 +106,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
 			remoteInfo = "jsiexecutor-tvOS";
+		};
+		08CA15F02224EF0C000D557A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08CA15EC2224EF0C000D557A /* RCTAgora.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 23AF281C1EEFECD800D771AB;
+			remoteInfo = RCTAgora;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -321,6 +321,7 @@
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
 		031DB30FC7AF485891DF3BDA /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		05D868DDD0804FFBA6B4A6CD /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		08CA15EC2224EF0C000D557A /* RCTAgora.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAgora.xcodeproj; path = "../node_modules/react-native-agora/ios/RCTAgora.xcodeproj"; sourceTree = "<group>"; };
 		10F80EF54D854BDBAB8AC439 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		118CF289BA674CAEB2D3DCE6 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -354,7 +355,6 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AE1CC48AE4FB9FCFC970A754 /* libPods-AgoraRNQuickStart-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgoraRNQuickStart-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE99062D251144F598B895B8 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		B6DDA4D52B3240A18E43BB26 /* RCTAgora.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTAgora.xcodeproj; path = "../node_modules/react-native-agora/ios/RCTAgora.xcodeproj"; sourceTree = "<group>"; };
 		B9D869B5E15E4B788D2BC3F1 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		C0FD72AE5A841FDEE3CA2B12 /* Pods-AgoraRNQuickStartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStartTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStartTests/Pods-AgoraRNQuickStartTests.release.xcconfig"; sourceTree = "<group>"; };
 		C681DC773257982ED82380A8 /* Pods-AgoraRNQuickStartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStartTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStartTests/Pods-AgoraRNQuickStartTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -435,20 +435,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0861DF2C221D41DF00A72F8C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0861DF30221D41DF00A72F8C /* libRCTAgora.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		08AA4076221C324B00064B87 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				CBB6EF905E904890903CD1EA /* libRCTAgora.a */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		08CA15ED2224EF0C000D557A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				08CA15F12224EF0C000D557A /* libRCTAgora.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		139105B71AF99BAD00B5F7CC /* Products */ = {
@@ -558,6 +558,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				08CA15EC2224EF0C000D557A /* RCTAgora.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -570,7 +571,6 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				B6DDA4D52B3240A18E43BB26 /* RCTAgora.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -698,8 +698,8 @@
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
 				{
-					ProductGroup = 0861DF2C221D41DF00A72F8C /* Products */;
-					ProjectRef = B6DDA4D52B3240A18E43BB26 /* RCTAgora.xcodeproj */;
+					ProductGroup = 08CA15ED2224EF0C000D557A /* Products */;
+					ProjectRef = 08CA15EC2224EF0C000D557A /* RCTAgora.xcodeproj */;
 				},
 				{
 					ProductGroup = 5E91572E1DD0AC6500FF2AA8 /* Products */;
@@ -789,13 +789,6 @@
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0861DF30221D41DF00A72F8C /* libRCTAgora.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTAgora.a;
-			remoteRef = 0861DF2F221D41DF00A72F8C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		08AA409D221C324C00064B87 /* libjsi.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -822,6 +815,13 @@
 			fileType = archive.ar;
 			path = "libjsiexecutor-tvOS.a";
 			remoteRef = 08AA40A2221C324C00064B87 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		08CA15F12224EF0C000D557A /* libRCTAgora.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTAgora.a;
+			remoteRef = 08CA15F02224EF0C000D557A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
