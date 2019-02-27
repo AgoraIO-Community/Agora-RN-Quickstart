@@ -129,12 +129,10 @@ class AgoraRTCView extends Component<Props> {
     }
     console.log("[CONFIG]", JSON.stringify(config));
     console.log("[CONFIG.encoderConfig", config.videoEncoderConfig);
-    RtcEngine.init(config);
-    RtcEngine.eventEmitter({
-      onFirstRemoteVideoDecoded: (data) => {
+    RtcEngine.on('firstRemoteVideoDecoded', (data) => {
         console.log('[RtcEngine] onFirstRemoteVideoDecoded', data);
-      },
-      onUserJoined: (data) => {
+    });
+    RtcEngine.on('userJoined', (data) => {
         console.log('[RtcEngine] onUserJoined', data);
         const {peerIds} = this.state;
         if (peerIds.indexOf(data.uid) === -1) {
@@ -142,41 +140,41 @@ class AgoraRTCView extends Component<Props> {
             peerIds: [...peerIds, data.uid]
           })
         }
-      },
-      onUserOffline: (data) => {
+      });
+    RtcEngine.on('userOffline', (data) => {
         console.log('[RtcEngine] onUserOffline', data);
         this.setState({
             peerIds: this.state.peerIds.filter(uid => uid !== data.uid)
         })
-      },
-      onJoinChannelSuccess: (data) => {
+      });
+    RtcEngine.on('joinChannelSuccess', (data) => {
         console.log('[RtcEngine] onJoinChannelSuccess', data);
         RtcEngine.startPreview();
         this.setState({
           joinSucceed: true,
           animating: false
         })
-      },
-      onAudioVolumeIndication: (data) => {
+      });
+    RtcEngine.on('audioVolumeIndication', (data) => {
         console.log('[RtcEngine] onAudioVolumeIndication', data);
-      },
-      onClientRoleChanged: (data) => {
+      })
+    RtcEngine.on('clientRoleChanged', (data) => {
         console.log("[RtcEngine] onClientRoleChanged", data);
-      },
-      onError: (data) => {
+      })
+    RtcEngine.on('error', (data) => {
         console.log('[RtcEngine] onError', data);
         if (data.error === 17) {
           RtcEngine.leaveChannel().then(_ => {
-            RtcEngine.destroy();
-            RtcEngine.removeEmitter();
+            this.setState({
+              joinSucceed: false
+            })
             const { state, goBack } = this.props.navigation;
-            const params = state.params || {};
             this.props.onCancel(data);
             goBack();
           });
         }
-      }
-    })
+      });
+    RtcEngine.init(config);
   }
 
   componentDidMount () {
@@ -191,21 +189,29 @@ class AgoraRTCView extends Component<Props> {
 
   shouldComponentUpdate(nextProps) { return nextProps.navigation.isFocused(); }
 
+
   componentWillUnmount () {
     if (this.state.joinSucceed) {
       RtcEngine.leaveChannel().then(res => {
+        RtcEngine.removeAllListeners();
         RtcEngine.destroy();
-        RtcEngine.removeEmitter();
       }).catch(err => {
-        console.log("[agora]: err", err);
+        RtcEngine.removeAllListeners();
+        RtcEngine.destroy();
+        console.log("leave channel failed", err);
       })
+    } else {
+      RtcEngine.removeAllListeners();
+      RtcEngine.destroy();
     }
   }
 
   handleCancel = () => {
-    const { state, goBack } = this.props.navigation;
+    const { goBack } = this.props.navigation;
     RtcEngine.leaveChannel().then(_ => {
-      RtcEngine.destroy();
+      this.setState({
+        joinSucceed: false
+      });
       goBack();
     }).catch(err => {
       console.log("[agora]: err", err);

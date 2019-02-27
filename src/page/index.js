@@ -4,7 +4,8 @@ import {
   StyleSheet,
   ScrollView,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  PermissionsAndroid
 } from 'react-native';
 import {
   Header
@@ -18,6 +19,22 @@ import {
   Paragraph
 } from 'react-native-paper';
 import {title} from '../settings';
+
+
+async function requestCameraAndAudioPermission() {
+  try {
+    const granted = await PermissionsAndroid.requestMultiple([
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO]);
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('You can use the camera');
+    } else {
+      console.log('Camera permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+}
 
 type Props = {
   theme: Theme,
@@ -49,6 +66,14 @@ export class Index extends React.Component<Props, State> {
       visible: false,
       message: null
     });
+  }
+
+  componentWillMount () {
+    if (Platform.OS === 'android') {
+      requestCameraAndAudioPermission().then(_ => {
+        
+      });
+    }
   }
 
   render() {
