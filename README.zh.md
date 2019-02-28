@@ -38,7 +38,7 @@
 请在当前项目路径执行以下命令:
 
 ```bash
-  npm install;
+  npm install
   react-native link react-native-agora
   react-native link react-navigation
   react-native link react-native-gesture-handler

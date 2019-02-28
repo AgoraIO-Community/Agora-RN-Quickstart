@@ -38,7 +38,7 @@ Open the [settings.js](src/settings.js) file and add the app ID.
 Run the below commands in this project directory:
 
 ```bash
-  npm install;
+  npm install
   react-native link react-native-agora
   react-native link react-navigation
   react-native link react-native-gesture-handler
