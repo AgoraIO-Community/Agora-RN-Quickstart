@@ -3,6 +3,7 @@
 *其他语言版本： [简体中文](README.zh.md)*
 
 This tutorial describes how to create an Agora account and build a sample app with Agora using [React Native](https://facebook.github.io/react-native/).
+
 The React Native SDK source can be found [here](https://github.com/syanbo/react-native-agora), while the API reference of Agora ReactNative SDK can be found [here](https://syanbo.github.io/react-native-agora/globals.html).
 
 ## Prerequisites
