@@ -4,7 +4,7 @@
 
 本教程介绍如何使用[React Native](https://facebook.github.io/react-native/)创建Agora账户并且使用Agora构建示例应用程序.
 
-Agora ReactNative SDK的源代码可以在[这里](https://github.com/syanbo/react-native-agora)找到，同时SDK所有的接口文档可以在[这里](https://syanbo.github.io/react-native-agora/globals.html)找到。
+Agora ReactNative SDK的源代码可以在[这里](https://github.com/syanbo/react-native-agora)找到，接口可以查阅SDK的[接口文档](https://syanbo.github.io/react-native-agora/globals.html)。
 
 ## 准备工作
 - Agora.io [Developer Account](https://dashboard.agora.io/signin/)
