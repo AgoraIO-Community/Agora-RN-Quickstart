@@ -19,9 +19,9 @@ if (!Agora) {
 const {
   FPS30,
   FixedLandscape,
-  Host,
   AudioProfileDefault,
   AudioScenarioDefault,
+  Host
 } = Agora;
 
 const BtnEndCall = () => require('../../assets/images/btn_endcall.png');
@@ -123,7 +123,6 @@ class AgoraRTCView extends Component<Props> {
         frameRate: FPS30,
         orientationMode: FixedLandscape,
       },
-      clientRole: Host,
       audioProfile: AudioProfileDefault,
       audioScenario: AudioScenarioDefault
     }
@@ -342,8 +341,7 @@ class AgoraRTCView extends Component<Props> {
 export default function AgoraRTCViewContainer(props) {
   const { navigation } = props;
   const channelProfile = navigation.getParam('channelProfile', 1);
-  const videoProfile = navigation.getParam('videoProfile', 4);
-  const clientRole = navigation.getParam('clientRole', 1);
+  const clientRole = navigation.getParam('clientRole', Host);
   const channelName = navigation.getParam('channelName', 'agoratest');
   const uid = navigation.getParam('uid', Math.floor(Math.random() * 100));
   const onCancel = navigation.getParam('onCancel');
@@ -351,7 +349,6 @@ export default function AgoraRTCViewContainer(props) {
   return (<AgoraRTCView
     channelProfile={channelProfile}
     channelName={channelName}
-    videoProfile={videoProfile}
     clientRole={clientRole}
     uid={uid}
     onCancel={onCancel}
