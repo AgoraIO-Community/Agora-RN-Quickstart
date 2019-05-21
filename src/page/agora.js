@@ -11,6 +11,7 @@ import {RtcEngine, AgoraView} from 'react-native-agora';
 import {APPID} from '../settings';
 
 const {Agora} = NativeModules;
+console.log(Agora)
 
 if (!Agora) {
   throw new Error("Agora load failed in react-native, please check ur compiler environments");
@@ -21,7 +22,8 @@ const {
   FixedLandscape,
   AudioProfileDefault,
   AudioScenarioDefault,
-  Host
+  Host,
+  Adaptative
 } = Agora;
 
 const BtnEndCall = () => require('../../assets/images/btn_endcall.png');
@@ -61,8 +63,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   remoteView: {
-    width: (width - 40) / 3,
-    height: (width - 40) / 3,
+    width: 30,
+    height: 30,
+    // width: (width - 40) / 3,
+    // height: (width - 40) / 3,
     margin: 5
   },
   bottomView: {
@@ -121,13 +125,16 @@ class AgoraRTCView extends Component<Props> {
         height: 480,
         bitrate: 1,
         frameRate: FPS30,
-        orientationMode: FixedLandscape,
+        orientationMode: Adaptative,
       },
       audioProfile: AudioProfileDefault,
       audioScenario: AudioScenarioDefault
     }
     console.log("[CONFIG]", JSON.stringify(config));
     console.log("[CONFIG.encoderConfig", config.videoEncoderConfig);
+    RtcEngine.on('videoSizeChanged', (data) => {
+      console.log("[RtcEngine] videoSizeChanged ", data)
+    })
     RtcEngine.on('firstRemoteVideoDecoded', (data) => {
         console.log('[RtcEngine] onFirstRemoteVideoDecoded', data);
     });
@@ -145,6 +152,7 @@ class AgoraRTCView extends Component<Props> {
         this.setState({
             peerIds: this.state.peerIds.filter(uid => uid !== data.uid)
         })
+        console.log('peerIds', this.state.peerIds, 'data.uid ', data.uid)
       });
     RtcEngine.on('joinChannelSuccess', (data) => {
         console.log('[RtcEngine] onJoinChannelSuccess', data);
@@ -278,11 +286,13 @@ class AgoraRTCView extends Component<Props> {
         activeOpacity={1}
         onPress={() => this.onPressVideo(uid)}
         key={key}>
-      <AgoraView
-          style={styles.remoteView}
-          zOrderMediaOverlay={true}
-          remoteUid={uid}
-      />
+        <Text>uid: {uid}</Text>
+        <AgoraView
+            key={uid}
+            style={styles.remoteView}
+            zOrderMediaOverlay={true}
+            remoteUid={uid}
+        />
       </TouchableOpacity>
       ))
       }</View>)
@@ -328,7 +338,7 @@ class AgoraRTCView extends Component<Props> {
       >
         <AgoraView style={styles.localView} showLocalVideo={true} />
           <View style={styles.absView}>
-            <Text>channelName: {this.props.channelName}, peers: {this.state.peerIds.length}</Text>
+            <Text>uid: {this.props.uid}, channelName: {this.props.channelName}, peers: {this.state.peerIds.join(",")}</Text>
             {this.agoraPeerViews(this.state)}
             {this.toolBar(this.state)}
           </View>
