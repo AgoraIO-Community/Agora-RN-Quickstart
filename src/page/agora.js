@@ -19,7 +19,6 @@ if (!Agora) {
 
 const {
   FPS30,
-  FixedLandscape,
   AudioProfileDefault,
   AudioScenarioDefault,
   Host,
@@ -28,15 +27,8 @@ const {
 
 const BtnEndCall = () => require('../../assets/images/btn_endcall.png');
 const BtnMute = () => require('../../assets/images/btn_mute.png');
-// const BtnSpeaker = () => require('../../assets/images/btn_speaker.png');
 const BtnSwitchCamera = () => require('../../assets/images/btn_switch_camera.png');
-// const BtnVideo = () => require('../../assets/images/btn_video.png');
-// const EnableCamera = () => require('../../assets/images/enable_camera.png');
-// const DisableCamera = () => require('../../assets/images/disable_camera.png');
-// const EnablePhotoflash = () => require('../../assets/images/enable_photoflash.png');
-// const DisablePhotoflash = () => require('../../assets/images/disable_photoflash.png');
 const IconMuted = () => require('../../assets/images/icon_muted.png');
-// const IconSpeaker = () => require('../../assets/images/icon_speaker.png');
 
 const {width} = Dimensions.get('window');
 
@@ -63,10 +55,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   remoteView: {
-    width: 30,
-    height: 30,
-    // width: (width - 40) / 3,
-    // height: (width - 40) / 3,
+    width: (width - 40) / 3,
+    height: (width - 40) / 3,
     margin: 5
   },
   bottomView: {
@@ -136,51 +126,54 @@ class AgoraRTCView extends Component<Props> {
       console.log("[RtcEngine] videoSizeChanged ", data)
     })
     RtcEngine.on('firstRemoteVideoDecoded', (data) => {
-        console.log('[RtcEngine] onFirstRemoteVideoDecoded', data);
+      console.log('[RtcEngine] onFirstRemoteVideoDecoded', data);
     });
     RtcEngine.on('userJoined', (data) => {
-        console.log('[RtcEngine] onUserJoined', data);
-        const {peerIds} = this.state;
-        if (peerIds.indexOf(data.uid) === -1) {
-          this.setState({
-            peerIds: [...peerIds, data.uid]
-          })
-        }
-      });
+      console.log('[RtcEngine] onUserJoined', data);
+      const {peerIds} = this.state;
+      if (peerIds.indexOf(data.uid) === -1) {
+        this.setState({
+          peerIds: [...peerIds, data.uid]
+        })
+      }
+    });
     RtcEngine.on('userOffline', (data) => {
-        console.log('[RtcEngine] onUserOffline', data);
-        this.setState({
-            peerIds: this.state.peerIds.filter(uid => uid !== data.uid)
-        })
-        console.log('peerIds', this.state.peerIds, 'data.uid ', data.uid)
-      });
+      console.log('[RtcEngine] onUserOffline', data);
+      this.setState({
+          peerIds: this.state.peerIds.filter(uid => uid !== data.uid)
+      })
+      console.log('peerIds', this.state.peerIds, 'data.uid ', data.uid)
+    });
     RtcEngine.on('joinChannelSuccess', (data) => {
-        console.log('[RtcEngine] onJoinChannelSuccess', data);
-        RtcEngine.startPreview();
-        this.setState({
-          joinSucceed: true,
-          animating: false
-        })
-      });
+      console.log('[RtcEngine] onJoinChannelSuccess', data);
+      RtcEngine.startPreview();
+      this.setState({
+        joinSucceed: true,
+        animating: false
+      })
+    });
     RtcEngine.on('audioVolumeIndication', (data) => {
-        console.log('[RtcEngine] onAudioVolumeIndication', data);
-      })
+      console.log('[RtcEngine] onAudioVolumeIndication', data);
+    })
     RtcEngine.on('clientRoleChanged', (data) => {
-        console.log("[RtcEngine] onClientRoleChanged", data);
-      })
+      console.log("[RtcEngine] onClientRoleChanged", data);
+    })
+    RtcEngine.on('videoSizeChanged', (data) => {
+      console.log("[RtcEngine] videoSizeChanged", data);
+    })
     RtcEngine.on('error', (data) => {
-        console.log('[RtcEngine] onError', data);
-        if (data.error === 17) {
-          RtcEngine.leaveChannel().then(_ => {
-            this.setState({
-              joinSucceed: false
-            })
-            const { state, goBack } = this.props.navigation;
-            this.props.onCancel(data);
-            goBack();
-          });
-        }
-      });
+      console.log('[RtcEngine] onError', data);
+      if (data.error === 17) {
+        RtcEngine.leaveChannel().then(_ => {
+          this.setState({
+            joinSucceed: false
+          })
+          const { state, goBack } = this.props.navigation;
+          this.props.onCancel(data);
+          goBack();
+        });
+      }
+    });
     RtcEngine.init(config);
   }
 
@@ -288,6 +281,7 @@ class AgoraRTCView extends Component<Props> {
         key={key}>
         <Text>uid: {uid}</Text>
         <AgoraView
+            mode={1}
             key={uid}
             style={styles.remoteView}
             zOrderMediaOverlay={true}
@@ -313,6 +307,7 @@ class AgoraRTCView extends Component<Props> {
           visible: false
       })} >
         <AgoraView
+          mode={1}
           style={{flex: 1}}
           zOrderMediaOverlay={true}
           remoteUid={this.state.selectedUid}
@@ -336,7 +331,7 @@ class AgoraRTCView extends Component<Props> {
         onPress={this.toggleHideButtons}
         style={styles.container}
       >
-        <AgoraView style={styles.localView} showLocalVideo={true} />
+        <AgoraView style={styles.localView} showLocalVideo={true} mode={1} />
           <View style={styles.absView}>
             <Text>uid: {this.props.uid}, channelName: {this.props.channelName}, peers: {this.state.peerIds.join(",")}</Text>
             {this.agoraPeerViews(this.state)}
