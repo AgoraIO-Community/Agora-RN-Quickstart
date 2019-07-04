@@ -1,20 +1,20 @@
-import React, {Component, PureComponent} from 'react';
+import React, {Component, PureComponent} from 'react'
 import {
   StyleSheet, Text, View, TouchableOpacity,
   Dimensions, Modal, NativeModules, Image
-} from 'react-native';
+} from 'react-native'
 
-import {Surface, ActivityIndicator} from 'react-native-paper';
+import {Surface, ActivityIndicator} from 'react-native-paper'
 
-import {RtcEngine, AgoraView} from 'react-native-agora';
+import {RtcEngine, AgoraView} from 'react-native-agora'
 
-import {APPID} from '../settings';
+import {APPID} from '../settings'
 
-const {Agora} = NativeModules;
+const {Agora} = NativeModules
 console.log(Agora)
 
 if (!Agora) {
-  throw new Error("Agora load failed in react-native, please check ur compiler environments");
+  throw new Error("Agora load failed in react-native, please check ur compiler environments")
 }
 
 const {
@@ -23,14 +23,14 @@ const {
   AudioScenarioDefault,
   Host,
   Adaptative
-} = Agora;
+} = Agora
 
-const BtnEndCall = () => require('../../assets/images/btn_endcall.png');
-const BtnMute = () => require('../../assets/images/btn_mute.png');
-const BtnSwitchCamera = () => require('../../assets/images/btn_switch_camera.png');
-const IconMuted = () => require('../../assets/images/icon_muted.png');
+const BtnEndCall = () => require('../../assets/images/btn_endcall.png')
+const BtnMute = () => require('../../assets/images/btn_mute.png')
+const BtnSwitchCamera = () => require('../../assets/images/btn_switch_camera.png')
+const IconMuted = () => require('../../assets/images/icon_muted.png')
 
-const {width} = Dimensions.get('window');
+const {width} = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
@@ -64,11 +64,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around'
   }
-});
+})
 
 class OperateButton extends PureComponent {
   render() {
-    const {onPress, source, style, imgStyle = {width: 50, height: 50}} = this.props;
+    const {onPress, source, style, imgStyle = {width: 50, height: 50}} = this.props
     return (
       <TouchableOpacity
         style={style}
@@ -87,7 +87,6 @@ class OperateButton extends PureComponent {
 type Props = {
   channelProfile: Number,
   channelName: String,
-  videoProfile: Number,
   clientRole: Number,
   onCancel: Function,
   uid: Number,
@@ -102,13 +101,12 @@ class AgoraRTCView extends Component<Props> {
     visible: false,
     selectedUid: undefined,
     animating: true
-  };
+  }
 
   componentWillMount () {
     const config = {
       appid: APPID,
       channelProfile: this.props.channelProfile,
-      videoProfile: this.props.videoProfile,
       clientRole: this.props.clientRole,
       videoEncoderConfig: {
         width: 360,
@@ -127,7 +125,7 @@ class AgoraRTCView extends Component<Props> {
     })
     RtcEngine.on('firstRemoteVideoDecoded', (data) => {
       console.log('[RtcEngine] onFirstRemoteVideoDecoded', data);
-    });
+    })
     RtcEngine.on('userJoined', (data) => {
       console.log('[RtcEngine] onUserJoined', data);
       const {peerIds} = this.state;
@@ -136,22 +134,23 @@ class AgoraRTCView extends Component<Props> {
           peerIds: [...peerIds, data.uid]
         })
       }
-    });
+    })
     RtcEngine.on('userOffline', (data) => {
       console.log('[RtcEngine] onUserOffline', data);
       this.setState({
           peerIds: this.state.peerIds.filter(uid => uid !== data.uid)
       })
       console.log('peerIds', this.state.peerIds, 'data.uid ', data.uid)
-    });
+    })
     RtcEngine.on('joinChannelSuccess', (data) => {
       console.log('[RtcEngine] onJoinChannelSuccess', data);
-      RtcEngine.startPreview();
-      this.setState({
-        joinSucceed: true,
-        animating: false
+      RtcEngine.startPreview().then(_ => {
+        this.setState({
+          joinSucceed: true,
+          animating: false
+        })
       })
-    });
+    })
     RtcEngine.on('audioVolumeIndication', (data) => {
       console.log('[RtcEngine] onAudioVolumeIndication', data);
     })
@@ -171,9 +170,9 @@ class AgoraRTCView extends Component<Props> {
           const { state, goBack } = this.props.navigation;
           this.props.onCancel(data);
           goBack();
-        });
+        })
       }
-    });
+    })
     RtcEngine.init(config);
   }
 
@@ -183,26 +182,30 @@ class AgoraRTCView extends Component<Props> {
     })
 
     console.log('[joinChannel] ' + this.props.channelName);
-    RtcEngine.joinChannel(this.props.channelName, this.props.uid);
+    RtcEngine.joinChannel(this.props.channelName, this.props.uid)
+      .then(result => {
+        /**
+         * ADD the code snippet after join channel success.
+         */
+      });
     RtcEngine.enableAudioVolumeIndication(500, 3);
   }
 
-  shouldComponentUpdate(nextProps) { return nextProps.navigation.isFocused(); }
+  shouldComponentUpdate(nextProps) {
+    return nextProps.navigation.isFocused();
+  }
 
 
   componentWillUnmount () {
     if (this.state.joinSucceed) {
       RtcEngine.leaveChannel().then(res => {
-        RtcEngine.removeAllListeners();
-        RtcEngine.destroy();
+        RtcEngine.destroy()
       }).catch(err => {
-        RtcEngine.removeAllListeners();
-        RtcEngine.destroy();
+        RtcEngine.destroy()
         console.log("leave channel failed", err);
       })
     } else {
-      RtcEngine.removeAllListeners();
-      RtcEngine.destroy();
+      RtcEngine.destroy()
     }
   }
 
@@ -211,10 +214,10 @@ class AgoraRTCView extends Component<Props> {
     RtcEngine.leaveChannel().then(_ => {
       this.setState({
         joinSucceed: false
-      });
-      goBack();
+      })
+      goBack()
     }).catch(err => {
-      console.log("[agora]: err", err);
+      console.log("[agora]: err", err)
     })
   }
 
@@ -226,7 +229,11 @@ class AgoraRTCView extends Component<Props> {
     this.setState({
       isMute: !this.state.isMute
     }, () => {
-      RtcEngine.muteAllRemoteAudioStreams(this.state.isMute);
+      RtcEngine.muteAllRemoteAudioStreams(this.state.isMute).then(_ => {
+        /**
+         * ADD the code snippet after muteAllRemoteAudioStreams success.
+         */
+      })
     })
   }
 
@@ -344,12 +351,12 @@ class AgoraRTCView extends Component<Props> {
 }
 
 export default function AgoraRTCViewContainer(props) {
-  const { navigation } = props;
-  const channelProfile = navigation.getParam('channelProfile', 1);
-  const clientRole = navigation.getParam('clientRole', Host);
-  const channelName = navigation.getParam('channelName', 'agoratest');
-  const uid = navigation.getParam('uid', Math.floor(Math.random() * 100));
-  const onCancel = navigation.getParam('onCancel');
+  const { navigation } = props
+  const channelProfile = navigation.getParam('channelProfile', 1)
+  const clientRole = navigation.getParam('clientRole', Host)
+  const channelName = navigation.getParam('channelName', 'agoratest')
+  const uid = navigation.getParam('uid', Math.floor(Math.random() * 100))
+  const onCancel = navigation.getParam('onCancel')
 
   return (<AgoraRTCView
     channelProfile={channelProfile}
@@ -358,5 +365,5 @@ export default function AgoraRTCViewContainer(props) {
     uid={uid}
     onCancel={onCancel}
     {...props}
-  ></AgoraRTCView>);
+  ></AgoraRTCView>)
 }
