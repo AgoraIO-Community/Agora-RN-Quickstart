@@ -24,8 +24,8 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		173F13EB174A4D90B979D47C /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05D868DDD0804FFBA6B4A6CD /* Zocial.ttf */; };
 		2651FB7171E247C59F9F975F /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 031DB30FC7AF485891DF3BDA /* FontAwesome5_Solid.ttf */; };
+		314A51ECD43FC5E81D6B04E6 /* libPods-AgoraRNQuickStart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AC22591B5FB7D0D1624C99 /* libPods-AgoraRNQuickStart.a */; };
 		3BCB9A1B69824DB593A39309 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3DC1C685C134EC096274061 /* SimpleLineIcons.ttf */; };
-		45891E35EE7D10B72BE131E5 /* libPods-AgoraRNQuickStart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6215AA0E5DE305DB001E56F1 /* libPods-AgoraRNQuickStart.a */; };
 		4AC63065FDF643508FDC8230 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9D869B5E15E4B788D2BC3F1 /* Ionicons.ttf */; };
 		586BBC4D6FA743F99143C39A /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76FED95167AE4B18A5B93344 /* FontAwesome5_Brands.ttf */; };
 		76A225E2416B4D3D8600B89F /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7672D64605EE4379A4E2F11A /* Entypo.ttf */; };
@@ -34,7 +34,6 @@
 		903BE27B7D704163924EBF1F /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 118CF289BA674CAEB2D3DCE6 /* Feather.ttf */; };
 		9B79336FBDF04FE295C9241D /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C5BAB2D62B14AA1ACA4D0C0 /* FontAwesome5_Regular.ttf */; };
 		9D707B99FDDA4500A1716C29 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE99062D251144F598B895B8 /* AntDesign.ttf */; };
-		9F74D3E981DA468CABE52C4D /* libRCTAgora.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB6EF905E904890903CD1EA /* libRCTAgora.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B3F7848B5647443E8CBE4073 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48F081A462764B1AA73759F3 /* MaterialIcons.ttf */; };
 		BA323C2284914B02AF51510F /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CE1193782B04ACCA27A5479 /* Foundation.ttf */; };
@@ -321,6 +320,7 @@
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
 		031DB30FC7AF485891DF3BDA /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		05D868DDD0804FFBA6B4A6CD /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		08A0E5B12319279F0074E567 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		08CA15EC2224EF0C000D557A /* RCTAgora.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAgora.xcodeproj; path = "../node_modules/react-native-agora/ios/RCTAgora.xcodeproj"; sourceTree = "<group>"; };
 		10F80EF54D854BDBAB8AC439 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		118CF289BA674CAEB2D3DCE6 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
@@ -336,34 +336,25 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		48F081A462764B1AA73759F3 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		4AC9F9B9A3A9EFE0C75F23D6 /* Pods-AgoraRNQuickStart-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStart-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStart-tvOSTests/Pods-AgoraRNQuickStart-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		563F4E540B52FDCCB3816E22 /* libPods-AgoraRNQuickStartTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgoraRNQuickStartTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		6215AA0E5DE305DB001E56F1 /* libPods-AgoraRNQuickStart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgoraRNQuickStart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		64E31C3587A602FC60536970 /* Pods-AgoraRNQuickStart-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStart-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStart-tvOS/Pods-AgoraRNQuickStart-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		73654C1089A74C7A9594C6F4 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		7672D64605EE4379A4E2F11A /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		76FED95167AE4B18A5B93344 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		7716A3D5F20B1D3B72C02E28 /* Pods-AgoraRNQuickStart-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStart-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStart-tvOS/Pods-AgoraRNQuickStart-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7C5BAB2D62B14AA1ACA4D0C0 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		7CE1193782B04ACCA27A5479 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		82707C73D7F8F3A6E00D26D6 /* Pods-AgoraRNQuickStart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStart/Pods-AgoraRNQuickStart.debug.xcconfig"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		9ED59BA81C28F39529C54153 /* libPods-AgoraRNQuickStart-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgoraRNQuickStart-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F6D24C7E0546E2904EAEF0 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		AE1CC48AE4FB9FCFC970A754 /* libPods-AgoraRNQuickStart-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgoraRNQuickStart-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE99062D251144F598B895B8 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		AFC264EBCB15D0C2953CE398 /* Pods-AgoraRNQuickStart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStart.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStart/Pods-AgoraRNQuickStart.release.xcconfig"; sourceTree = "<group>"; };
 		B9D869B5E15E4B788D2BC3F1 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		C0FD72AE5A841FDEE3CA2B12 /* Pods-AgoraRNQuickStartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStartTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStartTests/Pods-AgoraRNQuickStartTests.release.xcconfig"; sourceTree = "<group>"; };
-		C681DC773257982ED82380A8 /* Pods-AgoraRNQuickStartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStartTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStartTests/Pods-AgoraRNQuickStartTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C498489F1756A23D8E1D09A6 /* Pods-AgoraRNQuickStart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStart/Pods-AgoraRNQuickStart.debug.xcconfig"; sourceTree = "<group>"; };
 		CBB6EF905E904890903CD1EA /* libRCTAgora.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTAgora.a; sourceTree = "<group>"; };
-		D3D7261006B721196A36FA1A /* Pods-AgoraRNQuickStart-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStart-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStart-tvOSTests/Pods-AgoraRNQuickStart-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		D3DC1C685C134EC096274061 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		E6416EDE54CA681057BC1360 /* Pods-AgoraRNQuickStart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgoraRNQuickStart.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgoraRNQuickStart/Pods-AgoraRNQuickStart.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F4AC22591B5FB7D0D1624C99 /* libPods-AgoraRNQuickStart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgoraRNQuickStart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90C1FE213704C64BD473CA7 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -385,8 +376,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				9F74D3E981DA468CABE52C4D /* libRCTAgora.a in Frameworks */,
-				45891E35EE7D10B72BE131E5 /* libPods-AgoraRNQuickStart.a in Frameworks */,
+				314A51ECD43FC5E81D6B04E6 /* libPods-AgoraRNQuickStart.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,13 +501,11 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08A0E5B12319279F0074E567 /* UIKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				6215AA0E5DE305DB001E56F1 /* libPods-AgoraRNQuickStart.a */,
-				9ED59BA81C28F39529C54153 /* libPods-AgoraRNQuickStart-tvOS.a */,
-				AE1CC48AE4FB9FCFC970A754 /* libPods-AgoraRNQuickStart-tvOSTests.a */,
-				563F4E540B52FDCCB3816E22 /* libPods-AgoraRNQuickStartTests.a */,
+				F4AC22591B5FB7D0D1624C99 /* libPods-AgoraRNQuickStart.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -538,21 +526,6 @@
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		7EC0A7068D8EF672D9E45399 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				82707C73D7F8F3A6E00D26D6 /* Pods-AgoraRNQuickStart.debug.xcconfig */,
-				E6416EDE54CA681057BC1360 /* Pods-AgoraRNQuickStart.release.xcconfig */,
-				7716A3D5F20B1D3B72C02E28 /* Pods-AgoraRNQuickStart-tvOS.debug.xcconfig */,
-				64E31C3587A602FC60536970 /* Pods-AgoraRNQuickStart-tvOS.release.xcconfig */,
-				4AC9F9B9A3A9EFE0C75F23D6 /* Pods-AgoraRNQuickStart-tvOSTests.debug.xcconfig */,
-				D3D7261006B721196A36FA1A /* Pods-AgoraRNQuickStart-tvOSTests.release.xcconfig */,
-				C681DC773257982ED82380A8 /* Pods-AgoraRNQuickStartTests.debug.xcconfig */,
-				C0FD72AE5A841FDEE3CA2B12 /* Pods-AgoraRNQuickStartTests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -593,7 +566,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				90A4AA84BF6948A38D33E405 /* Resources */,
 				08AA4076221C324B00064B87 /* Recovered References */,
-				7EC0A7068D8EF672D9E45399 /* Pods */,
+				A5CCB947BFA439CD216A9E4B /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -630,6 +603,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		A5CCB947BFA439CD216A9E4B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C498489F1756A23D8E1D09A6 /* Pods-AgoraRNQuickStart.debug.xcconfig */,
+				AFC264EBCB15D0C2953CE398 /* Pods-AgoraRNQuickStart.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		ADBDB9201DFEBF0600ED6528 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,12 +628,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AgoraRNQuickStart" */;
 			buildPhases = (
-				86A201B58138E0CC6E6E58E5 /* [CP] Check Pods Manifest.lock */,
+				3D973EA586F97BDDA42124CF /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				CE92FBF908FD5BB3F1B83A3D /* [CP] Copy Pods Resources */,
+				81EA2057081A43A9F6916B17 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -686,6 +668,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1062,9 +1045,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		86A201B58138E0CC6E6E58E5 /* [CP] Check Pods Manifest.lock */ = {
+		3D973EA586F97BDDA42124CF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1086,7 +1069,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CE92FBF908FD5BB3F1B83A3D /* [CP] Copy Pods Resources */ = {
+		81EA2057081A43A9F6916B17 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1165,7 +1148,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82707C73D7F8F3A6E00D26D6 /* Pods-AgoraRNQuickStart.debug.xcconfig */;
+			baseConfigurationReference = C498489F1756A23D8E1D09A6 /* Pods-AgoraRNQuickStart.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1175,16 +1158,25 @@
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-agora/ios/RCTAgora/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AgoraRtcEngine_iOS\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
+					"\"${PODS_ROOT}/Headers/Public/RNVectorIcons\"",
+					"\"${PODS_ROOT}/Headers/Public/React\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-agora\"",
+					"\"${PODS_ROOT}/Headers/Public/yoga\"",
 				);
 				INFOPLIST_FILE = AgoraRNQuickStart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tori.mori.mobi.AgoraRNQuickStart;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.rxc;
 				PRODUCT_NAME = AgoraRNQuickStart;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1193,7 +1185,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6416EDE54CA681057BC1360 /* Pods-AgoraRNQuickStart.release.xcconfig */;
+			baseConfigurationReference = AFC264EBCB15D0C2953CE398 /* Pods-AgoraRNQuickStart.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1202,16 +1194,25 @@
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-agora/ios/RCTAgora/**",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AgoraRtcEngine_iOS\"",
+					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
+					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
+					"\"${PODS_ROOT}/Headers/Public/RNVectorIcons\"",
+					"\"${PODS_ROOT}/Headers/Public/React\"",
+					"\"${PODS_ROOT}/Headers/Public/glog\"",
+					"\"${PODS_ROOT}/Headers/Public/react-native-agora\"",
+					"\"${PODS_ROOT}/Headers/Public/yoga\"",
 				);
 				INFOPLIST_FILE = AgoraRNQuickStart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tori.mori.mobi.AgoraRNQuickStart;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.rxc;
 				PRODUCT_NAME = AgoraRNQuickStart;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1265,8 +1266,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LIBTOOLFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1311,7 +1314,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LIBTOOLFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

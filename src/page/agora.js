@@ -123,8 +123,8 @@ class AgoraRTCView extends Component<Props> {
     RtcEngine.on('videoSizeChanged', (data) => {
       console.log("[RtcEngine] videoSizeChanged ", data)
     })
-    RtcEngine.on('firstRemoteVideoDecoded', (data) => {
-      console.log('[RtcEngine] onFirstRemoteVideoDecoded', data);
+    RtcEngine.on('remoteVideoStateChanged', (data) => {
+      console.log('[RtcEngine] `remoteVideoStateChanged`', data);
     })
     RtcEngine.on('userJoined', (data) => {
       console.log('[RtcEngine] onUserJoined', data);
