@@ -65,31 +65,8 @@ Once the build is complete, run the `run` command to start the package server.
 ##### ios platform:
   1. `cd ios; pod install`
   2. `open ios/AgoraRNQuickStart.xcworkspace` open in xcode
-  3. Find Libraries -> RCTAgora.xcodeproj -> Build Phases -> Link Binary With Libraries -> AgoraRtcEngineKit.Framework
-  and replace by `ios/Pods/AgoraRtcEngine_iOS/AgoraRtcEngineKit.Framework`
-  4. xcode build
-
-
-## Adding react-native-agora to your project
-  1. `cd into_your_project_path`
-  2. `npm install react-native-agora --save`
-  3. `react-native link react-native-agora`
-  4. build and run it.
-    you can run `react-native run-android` directly to build android platform.  
+  3. xcode build
   
-### Building on iOS Platform
-  1. you should add `pod "react-native-agora", path: "../node_modules/react-native-agora"` in to Podfile and install the pod by `pod install`
-  2. open the `.xcworkspace` in xcode.
-  3. add `RCTAgora.xcodeproj` to Libraries.
-  ![add `RCTAgora.xcodeproj` to Libraries. step 1](./docs/add_RCTAgora_0.png)
-  ![add `RCTAgora.xcodeproj` to Libraries. step 2](./docs/add_RCTAgora_1.png)
-  4. find `AgoraRtcEngineKit.framework` from your `Pods` folder and replace `AgoraRtcEngineKit.framework` in `RCTAgora` by dragging it into Your Project -> Libraries -> RCTAgora.xcodeproj -> Build Phases -> Link Binary With Libraries
-  ![drag_sdk_into_your_project_rctagora_link_binary_with_libraires](./docs/drag_sdk_into_rctagora_link_binary_with_libraries.png)
-
-
-
-  
-
 ## Resources
 * Complete [API documentation](https://docs.agora.io/en/) at the Developer Center
 * [File bugs about this sample](https://github.com/AgoraIO-Community/Agora-RN-Quickstart/issues)

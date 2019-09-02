@@ -65,24 +65,7 @@ Agora ReactNative SDK的源代码可以在[这里](https://github.com/syanbo/rea
 ##### iOS平台:
   1. `cd ios; pod install`
   2. `open ios/AgoraRNQuickStart.xcworkspace` 打开ios工程文件
-  3. 选择Libraries -> RCTAgora.xcodeproj -> Build Phases -> Link Binary With Libraries -> AgoraRtcEngineKit.Framework
-  替换项目路径里`ios/Pods/AgoraRtcEngine_iOS/AgoraRtcEngineKit.Framework`
-  4. xcode build
-  
-## 在你的项目里添加react-native-agora
-  1. `cd <你的项目目录>`
-  2. `npm install react-native-agora --save`
-  3. `react-native link react-native-agora`
-  4. 安卓平台可以直接通过 `react-native run-android` 直接构建
-
-### 针对iOS平台的构建步骤
-  1. 在ios项目添加`pod "react-native-agora", path: "../node_modules/react-native-agora"` 到你的`Podfile`，并且执行`pod install`
-  2. 使用xcode 打开`.xcworkspace`
-  3. 添加`RCTAgora.xcodeproj`到项目的Libraries里。
-  ![add `RCTAgora.xcodeproj` to Libraries. step 1](./docs/add_RCTAgora_0.png)
-  ![add `RCTAgora.xcodeproj` to Libraries. step 2](./docs/add_RCTAgora_1.png)
-  4. 替换`RCTAgora`里的`AgoraRtcEngineKit.framework`。找到`Pods`目录里的`AgoraRtcEngineKit.framework`拖进你的 Project -> Libraries -> RCTAgora.xcodeproj -> Build Phases -> Link Binary With Libraries
-  ![drag_sdk_into_your_project_rctagora_link_binary_with_libraires](./docs/drag_sdk_into_rctagora_link_binary_with_libraries.png)
+  3. xcode build
 
 ## 附录
 * Agora开发者中心[API 文档](https://docs.agora.io/cn/)
