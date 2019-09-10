@@ -8,8 +8,8 @@ The React Native SDK source can be found [here](https://github.com/syanbo/react-
 
 ## Prerequisites
 - Agora.io [Developer Account](https://dashboard.agora.io/signin/)
-- react-native 0.58.x
-- nodejs v10.15.x
+- react-native 0.59.10
+- nodejs [lts](https://nodejs.org/en/)
 - iOS & Android sdk
 - real mobile phone
 

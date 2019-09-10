@@ -8,8 +8,8 @@ Agora ReactNative SDK的源代码可以在[这里](https://github.com/syanbo/rea
 
 ## 准备工作
 - Agora.io [Developer Account](https://dashboard.agora.io/signin/)
-- react-native 0.58.x
-- nodejs v10.15.x
+- react-native 0.59.10
+- nodejs [lts](https://nodejs.org/zh-cn/)
 - iOS & Android sdk
 - 手机设备
 
