@@ -188,7 +188,7 @@ class AgoraRTCView extends Component<Props> {
          * ADD the code snippet after join channel success.
          */
       });
-    RtcEngine.enableAudioVolumeIndication(500, 3);
+    RtcEngine.enableAudioVolumeIndication(500, 3, true);
   }
 
   shouldComponentUpdate(nextProps) {
