@@ -27,4 +27,7 @@ export default StyleSheet.create({
     fullView: {
         width: dimensions.width, height: dimensions.height - 130,
     },
+    videoView: {
+        width: dimensions.width, height: dimensions.height - 230,
+    },
 });

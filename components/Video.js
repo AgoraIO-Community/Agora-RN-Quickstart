@@ -34,7 +34,7 @@ class Video extends Component {
     this.state = {
       peerIds: [],                                       //Array for storing connected peers
       uid: Math.floor(Math.random() * 100),              //Generate a UID for local user
-      appid: config.appid,                               
+      appid: config.appid,
       channelName: 'channel-x',                        //Channel Name for the current session
       joinSucceed: false,                                //State variable for storing success
     };
@@ -109,10 +109,10 @@ class Video extends Component {
             <View style={styles.fullView}>
               <ScrollView decelerationRate={0}
                 style={styles.fullView}>
-                <AgoraView style={styles.fullView} showLocalVideo={true} mode={1} />
+                <AgoraView style={styles.videoView} showLocalVideo={true} mode={1} />
                 {
                   this.state.peerIds.map((data) => (
-                    <AgoraView style={styles.fullView}
+                    <AgoraView style={styles.videoView}
                       remoteUid={data} mode={1} key={data} />
                   ))
                 }
