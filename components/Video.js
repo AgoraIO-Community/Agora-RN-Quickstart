@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import requestCameraAndAudioPermission from './permission';
 import React, { Component } from 'react';
-import { View, NativeModules, ScrollView, Text, TouchableOpacity, Platform } from 'react-native';
+import { View, NativeModules, Text, TouchableOpacity, Platform } from 'react-native';
 import { RtcEngine, AgoraView } from 'react-native-agora';
 import styles from './Style';
 
@@ -104,21 +104,56 @@ class Video extends Component {
             </View>
             {
               !this.state.joinSucceed ?
-              <View/>
-              :
-            <View style={styles.fullView}>
-              <ScrollView decelerationRate={0}
-                style={styles.fullView}>
-                <AgoraView style={styles.videoView} showLocalVideo={true} mode={1} />
-                {
-                  this.state.peerIds.map((data) => (
-                    <AgoraView style={styles.videoView}
-                      remoteUid={data} mode={1} key={data} />
-                  ))
-                }
-              </ScrollView>
-            </View>
-          }
+                <View />
+                :
+                <View style={styles.fullView}>
+                  {
+                    this.state.peerIds.length > 3                   //view for four videostreams
+                      ? <View style={styles.full}>
+                        <View style={styles.halfViewRow}>
+                          <AgoraView style={styles.half}
+                            remoteUid={this.state.peerIds[0]} mode={1} />
+                          <AgoraView style={styles.half}
+                            remoteUid={this.state.peerIds[1]} mode={1} />
+                        </View>
+                        <View style={styles.halfViewRow}>
+                          <AgoraView style={styles.half}
+                            remoteUid={this.state.peerIds[2]} mode={1} />
+                          <AgoraView style={styles.half}
+                            remoteUid={this.state.peerIds[3]} mode={1} />
+                        </View>
+                      </View>
+                      : this.state.peerIds.length > 2                   //view for three videostreams
+                        ? <View style={styles.full}>
+                          <View style={styles.half}>
+                            <AgoraView style={styles.full}
+                              remoteUid={this.state.peerIds[0]} mode={1} />
+                          </View>
+                          <View style={styles.halfViewRow}>
+                            <AgoraView style={styles.half}
+                              remoteUid={this.state.peerIds[1]} mode={1} />
+                            <AgoraView style={styles.half}
+                              remoteUid={this.state.peerIds[2]} mode={1} />
+                          </View>
+                        </View>
+                        : this.state.peerIds.length > 1                   //view for two videostreams
+                          ? <View style={styles.full}>
+                            <AgoraView style={styles.full}
+                              remoteUid={this.state.peerIds[0]} mode={1} />
+                            <AgoraView style={styles.full}
+                              remoteUid={this.state.peerIds[1]} mode={1} />
+                          </View>
+                          : this.state.peerIds.length > 0                   //view for videostream
+                            ? <AgoraView style={styles.full}
+                              remoteUid={this.state.peerIds[0]} mode={1} />
+                            : <View>
+                              <Text style={styles.noUserText}> No users connected </Text>
+                            </View>
+                  }
+                  <AgoraView style={styles.localVideoStyle}
+                    zOrderMediaOverlay={true} showLocalVideo={true} mode={1} />
+                </View>
+            }
           </View>
         }
       </View>

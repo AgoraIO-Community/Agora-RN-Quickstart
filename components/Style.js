@@ -19,15 +19,39 @@ export default StyleSheet.create({
         justifyContent: 'space-evenly',
     },
     button: {
-        paddingHorizontal: 20, paddingVertical: 10, backgroundColor: '#0093E9', borderRadius: 25,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: '#0093E9',
+        borderRadius: 25,
     },
     buttonText: {
         color: '#fff',
     },
     fullView: {
-        width: dimensions.width, height: dimensions.height - 130,
+        width: dimensions.width,
+        height: dimensions.height - 100,
     },
-    videoView: {
-        width: dimensions.width, height: dimensions.height - 230,
+    halfViewRow: {
+        flex: 1 / 2,
+        flexDirection: 'row',
+    },
+    full: {
+        flex: 1,
+    },
+    half: {
+        flex: 1 / 2,
+    },
+    localVideoStyle: {
+        width: 120,
+        height: 150,
+        position: 'absolute',
+        top: 5,
+        right: 5,
+        zIndex: 100,
+    },
+    noUserText: {
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        color: '#0093E9',
     },
 });
