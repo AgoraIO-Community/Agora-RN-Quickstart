@@ -194,7 +194,7 @@ We use `RtcEngine.init(config)` to initialise the RTC Engine with our defined co
 We define functions to start and end the call, which we do by joining and leaving the channel and updating our state variables.
 ```JSX
 ...
-   /**
+  /**
   * @name videoView
   * @description Function to return the view for the app
   */
@@ -213,21 +213,56 @@ We define functions to start and end the call, which we do by joining and leavin
             </View>
             {
               !this.state.joinSucceed ?
-              <View/>
-              :
-            <View style={styles.fullView}>
-              <ScrollView decelerationRate={0}
-                style={styles.fullView}>
-                <AgoraView style={styles.fullView} showLocalVideo={true} mode={1} />
-                {
-                  this.state.peerIds.map((data) => (
-                    <AgoraView style={styles.fullView}
-                      remoteUid={data} mode={1} key={data} />
-                  ))
-                }
-              </ScrollView>
-            </View>
-          }
+                <View />
+                :
+                <View style={styles.fullView}>
+                  {
+                    this.state.peerIds.length > 3                   //view for four videostreams
+                      ? <View style={styles.full}>
+                        <View style={styles.halfViewRow}>
+                          <AgoraView style={styles.half}
+                            remoteUid={this.state.peerIds[0]} mode={1} />
+                          <AgoraView style={styles.half}
+                            remoteUid={this.state.peerIds[1]} mode={1} />
+                        </View>
+                        <View style={styles.halfViewRow}>
+                          <AgoraView style={styles.half}
+                            remoteUid={this.state.peerIds[2]} mode={1} />
+                          <AgoraView style={styles.half}
+                            remoteUid={this.state.peerIds[3]} mode={1} />
+                        </View>
+                      </View>
+                      : this.state.peerIds.length > 2                   //view for three videostreams
+                        ? <View style={styles.full}>
+                          <View style={styles.half}>
+                            <AgoraView style={styles.full}
+                              remoteUid={this.state.peerIds[0]} mode={1} />
+                          </View>
+                          <View style={styles.halfViewRow}>
+                            <AgoraView style={styles.half}
+                              remoteUid={this.state.peerIds[1]} mode={1} />
+                            <AgoraView style={styles.half}
+                              remoteUid={this.state.peerIds[2]} mode={1} />
+                          </View>
+                        </View>
+                        : this.state.peerIds.length > 1                   //view for two videostreams
+                          ? <View style={styles.full}>
+                            <AgoraView style={styles.full}
+                              remoteUid={this.state.peerIds[0]} mode={1} />
+                            <AgoraView style={styles.full}
+                              remoteUid={this.state.peerIds[1]} mode={1} />
+                          </View>
+                          : this.state.peerIds.length > 0                   //view for videostream
+                            ? <AgoraView style={styles.full}
+                              remoteUid={this.state.peerIds[0]} mode={1} />
+                            : <View>
+                              <Text style={styles.noUserText}> No users connected </Text>
+                            </View>
+                  }
+                  <AgoraView style={styles.localVideoStyle}
+                    zOrderMediaOverlay={true} showLocalVideo={true} mode={1} />
+                </View>
+            }
           </View>
         }
       </View>
@@ -239,7 +274,7 @@ We define functions to start and end the call, which we do by joining and leavin
 }
 export default Video;
 ```
-Next we define the view for our videocall, we have a button holder for our start and end call buttons. We also have a scrolling view that contains the videostreams of all the users. We use an AgoraView component, for viewing remote streams we set `remoteUid={'RemoteUidGoesHere'}`. For viewing the local user's stream we set `showLocalVideo={true}`.
+Next we define the view for different possible number of users; we start with 4 external users on the channel (diving the screen into four views using flexbox for four users) and move down to no connected users using conditional operator. Inside each view we use an AgoraView component, for viewing remote streams we set `remoteUid={'RemoteUidGoesHere'}`. For viewing the local user's stream we set `showLocalVideo={true}`.
 
 ### permission.js
 ```javascript
