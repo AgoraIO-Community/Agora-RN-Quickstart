@@ -2,7 +2,7 @@
 
 *其他语言版本： [English](README.md)*
 
-本教程介绍如何使用[React Native SDK](https://facebook.github.io/react-native/) 创建 Agora 账户并且实现多人视频通话。
+本教程介绍如何使用 [React Native SDK](https://facebook.github.io/react-native/) 创建 Agora 账户并且实现多人视频通话。
 
 Agora React Native SDK的源代码可以在[这里](https://github.com/syanbo/react-native-agora)找到，接口可以查阅 SDK 的[接口文档](https://syanbo.github.io/react-native-agora/globals.html)。
 
