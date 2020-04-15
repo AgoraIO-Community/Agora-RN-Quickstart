@@ -33,8 +33,10 @@ Use this guide to quickly start a multiple user group call.
 In the next step, you need to use the App ID of your project. Follow these steps to [create an Agora project](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms) in Console and get an [App ID](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id ).
 
 1. Go to [Console](https://dashboard.agora.io/) and click the **[Project Management](https://dashboard.agora.io/projects)** icon on the left navigation panel. 
-2. Click **Create** and follow the on-screen instructions to set the project name, choose an authentication mechanism, and Click **Submit**. 
+2. Click **Create** and follow the on-screen instructions to set the project name, choose an authentication mechanism (for this project select App ID without a certificate), and Click **Submit**. 
 3. On the **Project Management** page, find the **App ID** of your project. 
+
+Check the end of document if you want to use App ID with certificate.
 
 ### Steps to run our example
 
@@ -331,3 +333,11 @@ export default async function requestCameraAndAudioPermission() {
 }
 ```
 We have permission.js containing an async function to request permission from the OS on Android to use the camera and microphone.
+
+### Using App ID with certificate
+
+You can use an App ID with a certificate by making the following changes in the project:
+
+In `Home.js` define your token in the state as `token: *insert your token here*`
+
+In `Video.js` add `token: this.props.token` to your state and edit the `joinChannel` method to use the token like this: `RtcEngine.joinChannel(this.state.channelName, this.state.uid, `**`this.state.token`**`);`
