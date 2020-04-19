@@ -33,8 +33,10 @@ Use this guide to quickly start a multiple user group call.
 In the next step, you need to use the App ID of your project. Follow these steps to [create an Agora project](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms) in Console and get an [App ID](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id ).
 
 1. Go to [Console](https://dashboard.agora.io/) and click the **[Project Management](https://dashboard.agora.io/projects)** icon on the left navigation panel. 
-2. Click **Create** and follow the on-screen instructions to set the project name, choose an authentication mechanism, and Click **Submit**. 
+2. Click **Create** and follow the on-screen instructions to set the project name, choose an authentication mechanism (for this project select App ID without a certificate), and Click **Submit**. 
 3. On the **Project Management** page, find the **App ID** of your project. 
+
+Check the end of document if you want to use App ID with certificate.
 
 ### Steps to run our example
 
@@ -55,8 +57,7 @@ The app uses `channel-x` as the channel name.
 ```javascript
 import { StyleSheet, Dimensions } from 'react-native';
 
-let dimensions = {
-    //get dimensions of the device to use in view styles
+let dimensions = {                                //get dimensions of the device to use in view styles
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   };
@@ -73,13 +74,40 @@ export default StyleSheet.create({
         justifyContent: 'space-evenly',
     },
     button: {
-        paddingHorizontal: 20, paddingVertical: 10, backgroundColor: '#0093E9', borderRadius: 25,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: '#0093E9',
+        borderRadius: 25,
     },
     buttonText: {
         color: '#fff',
     },
     fullView: {
-        width: dimensions.width, height: dimensions.height - 130,
+        width: dimensions.width,
+        height: dimensions.height - 100,
+    },
+    halfViewRow: {
+        flex: 1 / 2,
+        flexDirection: 'row',
+    },
+    full: {
+        flex: 1,
+    },
+    half: {
+        flex: 1 / 2,
+    },
+    localVideoStyle: {
+        width: 120,
+        height: 150,
+        position: 'absolute',
+        top: 5,
+        right: 5,
+        zIndex: 100,
+    },
+    noUserText: {
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        color: '#0093E9',
     },
 });
 ```
@@ -305,3 +333,11 @@ export default async function requestCameraAndAudioPermission() {
 }
 ```
 We have permission.js containing an async function to request permission from the OS on Android to use the camera and microphone.
+
+### Using App ID with certificate
+
+You can use an App ID with a certificate by making the following changes in the project:
+
+In `Home.js` define your token in the state as `token: *insert your token here*`
+
+In `Video.js` add `token: this.props.token` to your state and edit the `joinChannel` method to use the token like this: `RtcEngine.joinChannel(this.state.channelName, this.state.uid, `**`this.state.token`**`);`
