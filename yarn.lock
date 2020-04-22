@@ -5428,12 +5428,10 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
   integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
 
-react-native-agora@^2.9.1-alpha.3:
-  version "2.9.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/react-native-agora/-/react-native-agora-2.9.1-alpha.3.tgz#beb5e6853dba70bfffac0bc1d93ba4b7eca59302"
-  integrity sha512-RFJUQEJYSgTJ9RNMf0bs02G6gHU8ib1RqyqVBZfcvHbi4ZJ0Tg21nXDOfm7+P6Tkj2hywXVAOQIIiEm6oq0cjQ==
-  dependencies:
-    tslib "^1.9.3"
+react-native-agora@3.0.0-beta.3:
+  version "3.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/react-native-agora/-/react-native-agora-3.0.0-beta.3.tgz#fdf2e2a1fc9b9acb541ec2299640c0b318f59ad1"
+  integrity sha512-3yaEUBEdSh6KTsXPj4SmHJ7qOZmPxvQP3EkP/ySpYzUjHLfiFC93reL9HY3Pa4dA501MK5fOzFNsibUZY0cHJg==
 
 react-native@0.61.5:
   version "0.61.5"
@@ -6483,7 +6481,7 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
+tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
