@@ -193,7 +193,7 @@ class Video extends Component {
     RtcEngine.init(config);                                         //Initialize the RTC engine
   }
   ```
-The RTC Engine fires events on user events, we define functions to handle the logic for maintaing user's on the call. We update the peerIds array to store connected users' uids which is used to show their feeds.
+The RTC Engine fires events on user events, we define functions to handle the logic for maintaining user's on the call. We update the peerIds array to store connected users' uids which is used to show their feeds.
 When a new user joins the call, we add their uid to the array. When user leaves the call, we remove their uid from the array; if the local users successfully joins the call channel, we start the stream preview.
 We use `RtcEngine.init(config)` to initialise the RTC Engine with our defined configuration. 
 
