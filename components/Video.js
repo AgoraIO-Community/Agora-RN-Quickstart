@@ -16,7 +16,7 @@ class Video extends Component {
     super(props);
     this.state = {
       peerIds: [],                                       //Array for storing connected peers
-      appid: '9383ec2f56364d478cefc38b0a37d8bc',
+      appid: 'YourAppID',
       channelName: 'channel-x',                        //Channel Name for the current session
       joinSucceed: false,                                //State variable for storing success
     };
