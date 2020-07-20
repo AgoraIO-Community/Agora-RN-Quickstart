@@ -183,7 +183,7 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
-  - react-native-agora (3.0.1-beta.7):
+  - react-native-agora (3.0.1-rc.2):
     - AgoraRtcEngine_iOS_Crypto (= 3.0.1.1)
     - React
   - React-RCTActionSheet (0.61.5):
@@ -330,7 +330,7 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-agora: 31b43a6c6a2e0d0fbdfc2c206ea05cf625d7847e
+  react-native-agora: cf1c663a9086b2d75ed110298ae732c0ec1c245d
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
