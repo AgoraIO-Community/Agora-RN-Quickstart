@@ -1,11 +1,9 @@
-/* eslint-disable prettier/prettier */
+import {Dimensions, StyleSheet} from 'react-native'
 
-import { StyleSheet, Dimensions } from 'react-native';
-
-let dimensions = {                                //get dimensions of the device to use in view styles
+const dimensions = {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-  };
+}
 
 export default StyleSheet.create({
     max: {
@@ -31,27 +29,20 @@ export default StyleSheet.create({
         width: dimensions.width,
         height: dimensions.height - 100,
     },
-    halfViewRow: {
-        flex: 1 / 2,
-        flexDirection: 'row',
-    },
-    full: {
-        flex: 1,
-    },
-    half: {
-        flex: 1 / 2,
-    },
-    localVideoStyle: {
-        width: 120,
+    remoteContainer: {
+        width: '100%',
         height: 150,
         position: 'absolute',
-        top: 5,
-        right: 5,
-        zIndex: 100,
+        top: 5
+    },
+    remote: {
+        width: 150,
+        height: 150,
+        marginHorizontal: 2.5
     },
     noUserText: {
         paddingHorizontal: 10,
         paddingVertical: 5,
         color: '#0093E9',
     },
-});
+})
