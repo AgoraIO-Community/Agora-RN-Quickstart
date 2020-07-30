@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import {Platform, ScrollView, Text, TouchableOpacity, View} from 'react-native'
-import RtcEngine, {RtcLocalView, RtcRemoteView, Types} from 'react-native-agora'
+import RtcEngine, {RtcLocalView, RtcRemoteView, VideoRenderMode} from 'react-native-agora'
 
 import requestCameraAndAudioPermission from './components/Permission'
 import styles from './components/Style'
-
-const {VideoRenderMode} = Types
 
 interface Props {
 }
