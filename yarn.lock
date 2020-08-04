@@ -5508,10 +5508,10 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
   integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
 
-react-native-agora@^3.0.1-rc.3:
-  version "3.0.1-rc.3"
-  resolved "https://registry.npm.taobao.org/react-native-agora/download/react-native-agora-3.0.1-rc.3.tgz#05a2066100f0a6aa7f5b3ffabce2b4a3a9d1c09a"
-  integrity sha1-BaIGYQDwpqp/Wz/6vOK0o6nRwJo=
+react-native-agora@^3.0.1-rc.4:
+  version "3.0.1-rc.4"
+  resolved "https://registry.yarnpkg.com/react-native-agora/-/react-native-agora-3.0.1-rc.4.tgz#4d1e0894c2d6e2c9217cf25116f403cfda27cf1e"
+  integrity sha512-ZI2pgOnFQHpRSCR0Src+zB+xGg0DspXdSqjQDUClJqDTxXE2RgjwwjC/36iiXP7rhCDI4QlInqWeiK9Sepi0VQ==
 
 react-native@0.61.5:
   version "0.61.5"
