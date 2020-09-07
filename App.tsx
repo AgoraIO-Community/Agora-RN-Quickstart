@@ -53,6 +53,14 @@ export default class App extends Component<Props, State> {
         this._engine = await RtcEngine.create(appId)
         await this._engine.enableVideo()
 
+        this._engine.addListener('Warning', (warn) => {
+            console.log('Warning', warn)
+        })
+
+        this._engine.addListener('Error', (err) => {
+            console.log('Error', err)
+        })
+
         this._engine.addListener('UserJoined', (uid, elapsed) => {
             console.log('UserJoined', uid, elapsed)
             // Get current peer IDs
