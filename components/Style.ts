@@ -25,17 +25,13 @@ export default StyleSheet.create({
     buttonText: {
         color: '#fff',
     },
-    fullView: {
-        width: dimensions.width,
-        height: dimensions.height - 100,
-    },
-    remoteContainer: {
+    videoContainer: {
         width: '100%',
         height: 150,
         position: 'absolute',
         top: 5
     },
-    remote: {
+    video: {
         width: 150,
         height: 150,
         marginHorizontal: 2.5
