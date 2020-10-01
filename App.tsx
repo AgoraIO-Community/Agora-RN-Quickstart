@@ -54,6 +54,10 @@ export default class App extends Component<Props, State> {
         this.init()
     }
 
+    componentWillUnmount() {
+        this._engine?.destroy()
+    }
+
     /**
      * init RtcEngine and RtcChannels
      */
@@ -99,6 +103,20 @@ export default class App extends Component<Props, State> {
                 })
             }
         })
+        if (publish) {
+            channel.addListener("AudioPublishStateChanged", (channelName, oldState, newState, elapseSinceLastState) => {
+                console.log('AudioPublishStateChanged', channelName, oldState, newState)
+            })
+            channel.addListener("VideoPublishStateChanged", (channelName, oldState, newState, elapseSinceLastState) => {
+                console.log('VideoPublishStateChanged', channelName, oldState, newState)
+            })
+            channel.addListener("AudioSubscribeStateChanged", (channelName, oldState, newState, elapseSinceLastState) => {
+                console.log('AudioSubscribeStateChanged', channelName, oldState, newState)
+            })
+            channel.addListener("VideoSubscribeStateChanged", ((channelName, oldState, newState, elapseSinceLastState) => {
+                console.log('VideoSubscribeStateChanged', channelName, oldState, newState)
+            }))
+        }
     }
 
     addUserJoinedListener = (channel: RtcChannel) => {
