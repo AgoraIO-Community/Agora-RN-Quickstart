@@ -7,6 +7,7 @@ import RtcEngine, {
     RtcChannel,
     RtcLocalView,
     RtcRemoteView,
+    VideoEncoderConfiguration,
     VideoRenderMode,
     VideoStreamType
 } from 'react-native-agora'
@@ -19,8 +20,16 @@ interface Props {
 
 interface State {
     joinSucceed: boolean,
-    peerUsers: { channelId: string, uid: number }[],
-    linkUser?: { channelId: string, uid: number }
+    peerUsers: {
+        channelId: string,
+        uid: number,
+        // to mark which remote user need to subscribe
+        subscribe: boolean
+    }[],
+    linkUser?: {
+        channelId: string,
+        uid: number
+    }
 }
 
 export default class App extends Component<Props, State> {
@@ -30,7 +39,11 @@ export default class App extends Component<Props, State> {
      * split 3 channels
      */
     _channelIds = [
-        {channelId: '0', publish: true},
+        {
+            channelId: '0',
+            // for demo, all of people publish stream to channel 0, you should modify it in your project.
+            publish: true
+        },
         {channelId: '1', publish: false},
         {channelId: '2', publish: false}
     ]
@@ -62,7 +75,7 @@ export default class App extends Component<Props, State> {
      * init RtcEngine and RtcChannels
      */
     init = async () => {
-        this._engine = await RtcEngine.create('2b4b76e458cf439aa7cd313b9504f0a4')
+        this._engine = await RtcEngine.create(YOUR_APP_ID)
         this._engine.addListener('Warning', (warn) => {
             console.log('Warning', warn)
         })
@@ -74,10 +87,28 @@ export default class App extends Component<Props, State> {
         await this._engine.enableAudio()
         // init video engine
         await this._engine.enableVideo()
-        // for group low quality video and 1v1 high quality video
-        await this._engine.enableDualStreamMode(true)
         // must set LiveBroadcasting profile
         await this._engine.setChannelProfile(ChannelProfile.LiveBroadcasting)
+        // for group low quality video and 1v1 high quality video
+        await this._engine.enableDualStreamMode(true)
+        // set resolution for high quality video
+        await this._engine.setVideoEncoderConfiguration(new VideoEncoderConfiguration({
+            dimensions: {
+                width: 1280,
+                height: 720
+            },
+            frameRate: 15,
+            bitrate: 1130
+        }))
+        // set resolution for low quality video
+        await this._engine.setParameters(JSON.stringify({
+            "che.video.lowBitRateStreamParameter": {
+                width: 320,
+                height: 180,
+                frameRate: 15,
+                bitRate: 140
+            }
+        }))
 
         this._channelIds.map(async ({channelId, publish}) => {
             this._channels[channelId] = await RtcChannel.create(channelId)
@@ -90,6 +121,8 @@ export default class App extends Component<Props, State> {
             await this._channels[channelId].setRemoteDefaultVideoStreamType(VideoStreamType.Low)
             // default mute remote audio stream, unmute when 1v1 chat
             await this._channels[channelId].setDefaultMuteAllRemoteAudioStreams(true)
+            // default mute remote video stream, unmute the users which you want to subscribe
+            await this._channels[channelId].setDefaultMuteAllRemoteVideoStreams(true)
         })
     }
 
@@ -126,7 +159,7 @@ export default class App extends Component<Props, State> {
             // Get current peer IDs
             const {peerUsers} = this.state
             // If new user
-            const user = {channelId, uid}
+            const user = {channelId, uid, subscribe: this._checkSubscribe(channelId, uid)}
             if (peerUsers.indexOf(user) === -1) {
                 this.setState({
                     // Add peer ID to state array
@@ -142,10 +175,23 @@ export default class App extends Component<Props, State> {
             console.log('UserOffline', channelId, uid, reason)
             const {peerUsers} = this.state
             this.setState({
-                // Remove peer ID from state array
-                peerUsers: peerUsers.filter(user => user != {channelId, uid})
+                // Remove peer user from the state peerUsers array
+                peerUsers: peerUsers.filter(user => user.channelId !== channelId || user.uid !== uid)
             })
         })
+    }
+
+    /**
+     * check if user need to be subscribed
+     */
+    _checkSubscribe = (channelId: string, uid: number) => {
+        // for demo, subscribe all of video streams, you should modify it in your project
+        if (true) {
+            // subscribe video stream
+            this._channels[channelId].muteRemoteVideoStream(uid, false)
+            return true
+        }
+        return false
     }
 
     /**
@@ -230,7 +276,8 @@ export default class App extends Component<Props, State> {
                 contentContainerStyle={{paddingHorizontal: 2.5}}
                 horizontal={true}>
                 {peerUsers.map((value) => {
-                    if (value != linkUser) {
+                    // render video if it has been subscribed
+                    if (value != linkUser && value.subscribe) {
                         return (
                             <TouchableOpacity onPress={() => this._linkToUser(value)}>
                                 <RtcRemoteView.SurfaceView
