@@ -16,6 +16,7 @@ interface Props {
  */
 interface State {
     appId: string,
+    token: string,
     channelName: string,
     joinSucceed: boolean,
     peerIds: number[],
@@ -28,6 +29,7 @@ export default class App extends Component<Props, State> {
         super(props)
         this.state = {
             appId: YourAppId,
+            token: YourToken,
             channelName: 'channel-x',
             joinSucceed: false,
             peerIds: [],
@@ -99,7 +101,7 @@ export default class App extends Component<Props, State> {
      */
     startCall = async () => {
         // Join Channel using null token and channel name
-        await this._engine?.joinChannel(null, this.state.channelName, null, 0)
+        await this._engine?.joinChannel(this.state.token, this.state.channelName, null, 0)
     }
 
     /**
