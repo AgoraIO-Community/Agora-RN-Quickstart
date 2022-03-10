@@ -11,7 +11,6 @@ export default StyleSheet.create({
   },
   buttonHolder: {
     height: 100,
-    marginTop: 20,
     alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
@@ -45,5 +44,8 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     color: '#0093E9',
+  },
+  padding: {
+    paddingHorizontal: 2.5,
   },
 });
