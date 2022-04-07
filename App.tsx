@@ -25,7 +25,7 @@ interface Props {}
  */
 interface State {
   appId: string;
-  token: string;
+  token: string | null;
   channelName: string;
   joinSucceed: boolean;
   peerIds: number[];
@@ -34,7 +34,7 @@ interface State {
 export default class App extends Component<Props, State> {
   _engine?: RtcEngine;
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       appId: YourAppId,

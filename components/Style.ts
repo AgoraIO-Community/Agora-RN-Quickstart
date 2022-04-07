@@ -11,6 +11,7 @@ export default StyleSheet.create({
   },
   buttonHolder: {
     height: 100,
+    marginTop: 20,
     alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
