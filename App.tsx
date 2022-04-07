@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Platform,
   ScrollView,
@@ -15,104 +15,82 @@ import RtcEngine, {
 import requestCameraAndAudioPermission from './components/Permission';
 import styles from './components/Style';
 
-interface Props {}
+const config = {
+  appId: YourAppId,
+  token: YourTokenOrNull,
+  channelName: 'channel-x',
+};
 
-/**
- * @property peerIds Array for storing connected peers
- * @property appId
- * @property channelName Channel Name for the current session
- * @property joinSucceed State variable for storing success
- */
-interface State {
-  appId: string;
-  token: string;
-  channelName: string;
-  joinSucceed: boolean;
-  peerIds: number[];
-}
+const App = () => {
+  const _engine = useRef<RtcEngine | null>(null);
+  const [isJoined, setJoined] = useState(false);
+  const [peerIds, setPeerIds] = useState<number[]>([]);
 
-export default class App extends Component<Props, State> {
-  _engine?: RtcEngine;
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      appId: YourAppId,
-      token: YourToken,
-      channelName: 'channel-x',
-      joinSucceed: false,
-      peerIds: [],
-    };
+  useEffect(() => {
     if (Platform.OS === 'android') {
       // Request required permissions from Android
       requestCameraAndAudioPermission().then(() => {
         console.log('requested!');
       });
     }
-  }
+  }, []);
 
-  componentDidMount() {
-    this.init();
-  }
+  useEffect(() => {
+    /**
+     * @name init
+     * @description Function to initialize the Rtc Engine, attach event listeners and actions
+     */
+    const init = async () => {
+      const { appId } = config;
+      _engine.current = await RtcEngine.create(appId);
+      await _engine.current.enableVideo();
 
-  /**
-   * @name init
-   * @description Function to initialize the Rtc Engine, attach event listeners and actions
-   */
-  init = async () => {
-    const { appId } = this.state;
-    this._engine = await RtcEngine.create(appId);
-    await this._engine.enableVideo();
+      _engine.current.addListener('Warning', (warn) => {
+        console.log('Warning', warn);
+      });
 
-    this._engine.addListener('Warning', (warn) => {
-      console.log('Warning', warn);
-    });
+      _engine.current.addListener('Error', (err) => {
+        console.log('Error', err);
+      });
 
-    this._engine.addListener('Error', (err) => {
-      console.log('Error', err);
-    });
-
-    this._engine.addListener('UserJoined', (uid, elapsed) => {
-      console.log('UserJoined', uid, elapsed);
-      // Get current peer IDs
-      const { peerIds } = this.state;
-      // If new user
-      if (peerIds.indexOf(uid) === -1) {
-        this.setState({
+      _engine.current.addListener('UserJoined', (uid, elapsed) => {
+        console.log('UserJoined', uid, elapsed);
+        // If new user
+        if (peerIds.indexOf(uid) === -1) {
           // Add peer ID to state array
-          peerIds: [...peerIds, uid],
-        });
-      }
-    });
+          setPeerIds((prev) => [...prev, uid]);
+        }
+      });
 
-    this._engine.addListener('UserOffline', (uid, reason) => {
-      console.log('UserOffline', uid, reason);
-      const { peerIds } = this.state;
-      this.setState({
+      _engine.current.addListener('UserOffline', (uid, reason) => {
+        console.log('UserOffline', uid, reason);
         // Remove peer ID from state array
-        peerIds: peerIds.filter((id) => id !== uid),
+        setPeerIds((prev) => prev.filter((id) => id !== uid));
       });
-    });
 
-    // If Local user joins RTC channel
-    this._engine.addListener('JoinChannelSuccess', (channel, uid, elapsed) => {
-      console.log('JoinChannelSuccess', channel, uid, elapsed);
-      // Set state variable to true
-      this.setState({
-        joinSucceed: true,
-      });
-    });
-  };
+      // If Local user joins RTC channel
+      _engine.current.addListener(
+        'JoinChannelSuccess',
+        (channel, uid, elapsed) => {
+          console.log('JoinChannelSuccess', channel, uid, elapsed);
+          // Set state variable to true
+          setJoined(true);
+        }
+      );
+    };
+    init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * @name startCall
    * @description Function to start the call
    */
-  startCall = async () => {
+  const startCall = async () => {
     // Join Channel using null token and channel name
-    await this._engine?.joinChannel(
-      this.state.token,
-      this.state.channelName,
+    await _engine.current?.joinChannel(
+      config.token,
+      config.channelName,
       null,
       0
     );
@@ -122,49 +100,30 @@ export default class App extends Component<Props, State> {
    * @name endCall
    * @description Function to end the call
    */
-  endCall = async () => {
-    await this._engine?.leaveChannel();
-    this.setState({ peerIds: [], joinSucceed: false });
+  const endCall = async () => {
+    await _engine.current?.leaveChannel();
+    setPeerIds([]);
+    setJoined(false);
   };
 
-  render() {
-    return (
-      <View style={styles.max}>
-        <View style={styles.max}>
-          <View style={styles.buttonHolder}>
-            <TouchableOpacity onPress={this.startCall} style={styles.button}>
-              <Text style={styles.buttonText}> Start Call </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.endCall} style={styles.button}>
-              <Text style={styles.buttonText}> End Call </Text>
-            </TouchableOpacity>
-          </View>
-          {this._renderVideos()}
-        </View>
-      </View>
-    );
-  }
-
-  _renderVideos = () => {
-    const { joinSucceed } = this.state;
-    return joinSucceed ? (
+  const _renderVideos = () => {
+    return isJoined ? (
       <View style={styles.fullView}>
         <RtcLocalView.SurfaceView
           style={styles.max}
-          channelId={this.state.channelName}
+          channelId={config.channelName}
           renderMode={VideoRenderMode.Hidden}
         />
-        {this._renderRemoteVideos()}
+        {_renderRemoteVideos()}
       </View>
     ) : null;
   };
 
-  _renderRemoteVideos = () => {
-    const { peerIds } = this.state;
+  const _renderRemoteVideos = () => {
     return (
       <ScrollView
         style={styles.remoteContainer}
-        contentContainerStyle={{ paddingHorizontal: 2.5 }}
+        contentContainerStyle={styles.padding}
         horizontal={true}
       >
         {peerIds.map((value) => {
@@ -172,7 +131,7 @@ export default class App extends Component<Props, State> {
             <RtcRemoteView.SurfaceView
               style={styles.remote}
               uid={value}
-              channelId={this.state.channelName}
+              channelId={config.channelName}
               renderMode={VideoRenderMode.Hidden}
               zOrderMediaOverlay={true}
             />
@@ -181,4 +140,22 @@ export default class App extends Component<Props, State> {
       </ScrollView>
     );
   };
-}
+
+  return (
+    <View style={styles.max}>
+      <View style={styles.max}>
+        <View style={styles.buttonHolder}>
+          <TouchableOpacity onPress={startCall} style={styles.button}>
+            <Text style={styles.buttonText}> Start Call </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={endCall} style={styles.button}>
+            <Text style={styles.buttonText}> End Call </Text>
+          </TouchableOpacity>
+        </View>
+        {_renderVideos()}
+      </View>
+    </View>
+  );
+};
+
+export default App;

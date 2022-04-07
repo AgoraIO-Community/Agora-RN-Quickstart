@@ -2,8 +2,7 @@
 //  File.swift
 //  AgoraRNQuickstart
 //
-//  Created by LXH on 2020/7/7.
-//  Copyright © 2020 Facebook. All rights reserved.
+//  Created by ekaansh arora on 09/02/22.
 //
 
 import Foundation

@@ -45,8 +45,8 @@ Check the end of document if you want to use App ID with the certificate.
 ### Steps to run our example
 
 * Download and extract the zip file.
-* Run `npm install` or use `yarn` to install the app dependencies in the unzipped directory.
-* Navigate to `./App.tsx` and enter your App ID that we generated as `appId: YourAppId,`
+* Run `npm install` to install the app dependencies in the unzipped directory.
+* Navigate to `./App.tsx` and enter your App ID and token that we generated as `appId: 'YourAppId', token: 'YourChannelToken'`
 * Open a terminal and execute `cd ios && pod install`.
 * Connect your device and run `npx react-native run-android` or `npx react-native run-ios` to start the app.
 

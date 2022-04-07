@@ -45,4 +45,7 @@ export default StyleSheet.create({
     paddingVertical: 5,
     color: '#0093E9',
   },
+  padding: {
+    paddingHorizontal: 2.5,
+  },
 });
