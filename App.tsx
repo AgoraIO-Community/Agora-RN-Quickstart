@@ -1,28 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import {Platform, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {
-  Platform,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import RtcEngine, {
-  RtcLocalView,
-  RtcRemoteView,
-  VideoRenderMode,
+  ChannelProfileType,
+  ClientRoleType,
+  createAgoraRtcEngine,
+  IRtcEngine,
+  RtcSurfaceView,
 } from 'react-native-agora';
-
-import requestCameraAndAudioPermission from './components/Permission';
 import styles from './components/Style';
+import requestCameraAndAudioPermission from './components/Permission';
 
 const config = {
-  appId: YourAppId,
-  token: YourTokenOrNull,
-  channelName: 'channel-x',
+  appId: AgoraAppID,
+  token: '',
+  channelName: 'test',
 };
 
 const App = () => {
-  const _engine = useRef<RtcEngine | null>(null);
+  const _engine = useRef<IRtcEngine | null>(null);
   const [isJoined, setJoined] = useState(false);
   const [peerIds, setPeerIds] = useState<number[]>([]);
 
@@ -35,52 +30,43 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    /**
-     * @name init
-     * @description Function to initialize the Rtc Engine, attach event listeners and actions
-     */
-    const init = async () => {
-      const { appId } = config;
-      _engine.current = await RtcEngine.create(appId);
-      await _engine.current.enableVideo();
+  /**
+   * @name init
+   * @description Create, Initialize and setup engine
+   */
+  const init = async () => {
+    const {appId} = config;
+    _engine.current = await createAgoraRtcEngine();
+    _engine.current.initialize({appId});
+    _engine.current.setChannelProfile(
+      ChannelProfileType.ChannelProfileLiveBroadcasting,
+    );
+    _engine.current.setClientRole(ClientRoleType.ClientRoleBroadcaster);
+    _engine.current.enableVideo();
+    _engine.current.startPreview();
 
-      _engine.current.addListener('Warning', (warn) => {
-        console.log('Warning', warn);
-      });
+    _engine.current.addListener('onUserJoined', (connection, uid) => {
+      console.log('UserJoined', connection, uid);
+      // If new user
+      if (peerIds.indexOf(uid) === -1) {
+        // Add peer ID to state array
+        setPeerIds(prev => [...prev, uid]);
+      }
+    });
 
-      _engine.current.addListener('Error', (err) => {
-        console.log('Error', err);
-      });
+    _engine.current.addListener('onUserOffline', (connection, uid) => {
+      console.log('UserOffline', connection, uid);
+      // Remove peer ID from state array
+      setPeerIds(prev => prev.filter(id => id !== uid));
+    });
 
-      _engine.current.addListener('UserJoined', (uid, elapsed) => {
-        console.log('UserJoined', uid, elapsed);
-        // If new user
-        if (peerIds.indexOf(uid) === -1) {
-          // Add peer ID to state array
-          setPeerIds((prev) => [...prev, uid]);
-        }
-      });
-
-      _engine.current.addListener('UserOffline', (uid, reason) => {
-        console.log('UserOffline', uid, reason);
-        // Remove peer ID from state array
-        setPeerIds((prev) => prev.filter((id) => id !== uid));
-      });
-
-      // If Local user joins RTC channel
-      _engine.current.addListener(
-        'JoinChannelSuccess',
-        (channel, uid, elapsed) => {
-          console.log('JoinChannelSuccess', channel, uid, elapsed);
-          // Set state variable to true
-          setJoined(true);
-        }
-      );
-    };
-    init();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // If Local user joins RTC channel
+    _engine.current.addListener('onJoinChannelSuccess', connection => {
+      console.log('JoinChannelSuccess', connection);
+      // Set state variable to true
+      setJoined(true);
+    });
+  };
 
   /**
    * @name startCall
@@ -88,12 +74,8 @@ const App = () => {
    */
   const startCall = async () => {
     // Join Channel using null token and channel name
-    await _engine.current?.joinChannel(
-      config.token,
-      config.channelName,
-      null,
-      0
-    );
+    await init();
+    await _engine.current?.joinChannel(config.token, config.channelName, 0, {});
   };
 
   /**
@@ -101,7 +83,14 @@ const App = () => {
    * @description Function to end the call
    */
   const endCall = async () => {
-    await _engine.current?.leaveChannel();
+    _engine.current?.leaveChannel();
+    _engine.current?.removeAllListeners();
+    try {
+      _engine.current?.release();
+    } catch (e) {
+      console.log('release error:', e);
+    }
+
     setPeerIds([]);
     setJoined(false);
   };
@@ -109,10 +98,11 @@ const App = () => {
   const _renderVideos = () => {
     return isJoined ? (
       <View style={styles.fullView}>
-        <RtcLocalView.SurfaceView
+        <RtcSurfaceView
           style={styles.max}
-          channelId={config.channelName}
-          renderMode={VideoRenderMode.Hidden}
+          canvas={{
+            uid: 0,
+          }}
         />
         {_renderRemoteVideos()}
       </View>
@@ -124,16 +114,15 @@ const App = () => {
       <ScrollView
         style={styles.remoteContainer}
         contentContainerStyle={styles.padding}
-        horizontal={true}
-      >
-        {peerIds.map((value) => {
+        horizontal={true}>
+        {peerIds.map(id => {
           return (
-            <RtcRemoteView.SurfaceView
+            <RtcSurfaceView
               style={styles.remote}
-              uid={value}
-              channelId={config.channelName}
-              renderMode={VideoRenderMode.Hidden}
-              zOrderMediaOverlay={true}
+              canvas={{
+                uid: id,
+              }}
+              key={id}
             />
           );
         })}
